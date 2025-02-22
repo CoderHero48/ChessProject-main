@@ -40,17 +40,17 @@ class ChessUI:
             return
 
         # Timer labels
-        self.player_time_label = tk.Label(root, text="Player Time: 10:00", font=("Arial", 12))
+        self.player_time_label = tk.Label(root, text="Player Time: 10:00", font=("Arial", 12),bg="#c27421",fg="#f5dea9")
         self.player_time_label.pack(side=tk.LEFT)
-        self.opponent_time_label = tk.Label(root, text="Opponent Time: 10:00", font=("Arial", 12))
+        self.opponent_time_label = tk.Label(root, text="Opponent Time: 10:00", font=("Arial", 12),bg="#c27421",fg="#f5dea9")
         self.opponent_time_label.pack(side=tk.RIGHT)
 
         # Buttons
-        self.new_game_button = tk.Button(root, text="New Game", command=self.newGame)
+        self.new_game_button = tk.Button(root, text="New Game", command=self.newGame,bg="#c27421",fg="#f5dea9")
         self.new_game_button.pack(side=tk.TOP)
-        self.undo_button = tk.Button(root, text="Undo", command=self.undoMove)
+        self.undo_button = tk.Button(root, text="Undo", command=self.undoMove,bg="#c27421",fg="#f5dea9")
         self.undo_button.pack(side=tk.TOP)
-        self.redo_button = tk.Button(root, text="Redo", command=self.redoMove)
+        self.redo_button = tk.Button(root, text="Redo", command=self.redoMove,bg="#c27421",fg="#f5dea9")
         self.redo_button.pack(side=tk.TOP)
 
     def loadImages(self):
