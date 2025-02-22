@@ -5,16 +5,15 @@ import os
 from pathlib import Path
 import time
 import chessengine as ChessEngine
-
 BOARD_WIDTH = BOARD_HEIGHT = 512
 DIMENSION = 8  # Changed from 9 to 8 to match chess board dimensions
 SQUARE_SIZE = BOARD_HEIGHT // DIMENSION
 IMAGES = {}
-
 class ChessUI:
     def __init__(self, root):
         self.root = root
         self.root.title("Chess Game")
+        self.root.configure(bg="#696561")
         self.game_state = ChessEngine.GameState()
         self.valid_moves = self.game_state.getValidMoves()
         self.state = {"selected": (), "clicks": []}
@@ -28,7 +27,7 @@ class ChessUI:
 
         # Create canvas
         self.canvas = tk.Canvas(root, width=BOARD_WIDTH, height=BOARD_HEIGHT)
-        self.canvas.pack()
+        self.canvas.pack(side="left")
 
         # Load images and initialize board
         if self.loadImages():
@@ -40,18 +39,20 @@ class ChessUI:
             return
 
         # Timer labels
-        self.player_time_label = tk.Label(root, text="Player Time: 10:00", font=("Arial", 12),bg="#c27421",fg="#f5dea9")
-        self.player_time_label.pack(side=tk.LEFT)
-        self.opponent_time_label = tk.Label(root, text="Opponent Time: 10:00", font=("Arial", 12),bg="#c27421",fg="#f5dea9")
-        self.opponent_time_label.pack(side=tk.RIGHT)
+        frame_sidebar= tk.Frame(root, bg="#f5dea9",width=200, height=180)
+        frame_sidebar.pack(side="right")
+        self.player_time_label = tk.Label(frame_sidebar, text="Player Time: 10:00", font=("Arial", 12),bg="#c27421",fg="#f5dea9")
+        self.player_time_label.pack(pady=10)
+        self.opponent_time_label = tk.Label(frame_sidebar, text="Opponent Time: 10:00", font=("Arial", 12),bg="#c27421",fg="#f5dea9")
+        self.opponent_time_label.pack()
 
         # Buttons
-        self.new_game_button = tk.Button(root, text="New Game", command=self.newGame,bg="#c27421",fg="#f5dea9")
-        self.new_game_button.pack(side=tk.TOP)
-        self.undo_button = tk.Button(root, text="Undo", command=self.undoMove,bg="#c27421",fg="#f5dea9")
-        self.undo_button.pack(side=tk.TOP)
-        self.redo_button = tk.Button(root, text="Redo", command=self.redoMove,bg="#c27421",fg="#f5dea9")
-        self.redo_button.pack(side=tk.TOP)
+        self.new_game_button = tk.Button(frame_sidebar, text="New Game", command=self.newGame,bg="#c27421",fg="#f5dea9")
+        self.new_game_button.pack(pady=20)
+        self.undo_button = tk.Button(frame_sidebar, text="Undo", command=self.undoMove,bg="#c27421",fg="#f5dea9")
+        self.undo_button.pack(pady=10)
+        self.redo_button = tk.Button(frame_sidebar, text="Redo", command=self.redoMove,bg="#c27421",fg="#f5dea9")
+        self.redo_button.pack()
 
     def loadImages(self):
         """
