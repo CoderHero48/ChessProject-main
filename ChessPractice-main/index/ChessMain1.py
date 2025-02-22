@@ -60,7 +60,7 @@ class ChessUI:
         pieces = ['wp', 'wR', 'wN', 'wB', 'wK', 'wQ', 'bp', 'bR', 'bN', 'bB', 'bK', 'bQ']
         try:
             # Use Path for cross-platform compatibility
-            image_path = Path("C:/Users/Dharshan M Nadar/Downloads/ChessPractice-main/ChessPractice-main/index/images")
+            image_path = Path("C:/Users/Divya/Documents/ChessProject-main/ChessPractice-main/index/images")
             for piece in pieces:
                 img_path = image_path / f"{piece}.png"
                 if img_path.exists():
